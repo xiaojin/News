@@ -69,12 +69,12 @@
 {
     News *newsItem =  [self.status getNews];
     NSString *picImage = @"";
-    if ([newsItem.imageHref isEqualToString:@""]) {
-        picImage = @"";
-    } else {
-        picImage = [newsItem imageHref];
-    }
-    self.imagePic.image = [UIImage imageNamed:picImage];
+//    if ([newsItem.imageHref isEqualToString:@""]) {
+//        picImage = @"";
+//    } else {
+//        picImage = [newsItem imageHref];
+//    }
+    self.imagePic.image = [UIImage imageNamed:@"default.jpg"];
     [self.lblTitle setText:[newsItem title]];
     [self.lblText setText:[newsItem desc]];
 }

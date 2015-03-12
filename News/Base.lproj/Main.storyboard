@@ -16,12 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-Ja-k8w">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wbz-Ja-k8w">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wbz-Ja-k8w" secondAttribute="trailing" id="HbE-TN-QNK"/>
+                            <constraint firstItem="wbz-Ja-k8w" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="h2k-BV-V01"/>
+                            <constraint firstAttribute="bottom" secondItem="wbz-Ja-k8w" secondAttribute="bottom" id="htG-hD-bQZ"/>
+                            <constraint firstItem="wbz-Ja-k8w" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="uIJ-LW-Rtw"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="wbz-Ja-k8w" id="iQp-jI-nR3"/>

@@ -51,11 +51,11 @@
     CGFloat textW = textSize.width;
     CGFloat textH = textSize.height;
     CGFloat textPointX = padding;
-    CGFloat textPointY = CGRectGetMaxY(_titleFrame);
+    CGFloat textPointY = CGRectGetMaxY(_titleFrame)+ paddingTop;
     _textFrame = CGRectMake(textPointX, textPointY, textW, textH);
     
 
-    CGFloat picPointX = CGRectGetMaxX(_textFrame);;
+    CGFloat picPointX = frameSize.width-padding-PicWith;
     CGFloat picPointY = CGRectGetMaxY(_titleFrame);
     _pictureFrame = CGRectMake(picPointX, picPointY, PicWith, PicHeight);
     if (CGRectGetMaxY(_textFrame) > CGRectGetMaxY(_pictureFrame)) {
