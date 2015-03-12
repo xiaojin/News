@@ -15,6 +15,11 @@
 		5BF3B9461AB1B5EE00BB9422 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF3B9441AB1B5EE00BB9422 /* LaunchScreen.xib */; };
 		5BF3B9521AB1B5EF00BB9422 /* NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9511AB1B5EF00BB9422 /* NewsTests.m */; };
 		5BF3B95D1AB1B68900BB9422 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */; };
+		5BF3B9601AB1B89800BB9422 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B95F1AB1B89800BB9422 /* News.m */; };
+		5BF3B9631AB1B9AC00BB9422 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9621AB1B9AC00BB9422 /* FootView.m */; };
+		5BF3B96D1AB1BA4F00BB9422 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9671AB1BA4F00BB9422 /* CJSONDeserializer.m */; };
+		5BF3B96E1AB1BA4F00BB9422 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9691AB1BA4F00BB9422 /* CJSONSerializer.m */; };
+		5BF3B96F1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B96C1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +48,17 @@
 		5BF3B9511AB1B5EF00BB9422 /* NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsTests.m; sourceTree = "<group>"; };
 		5BF3B95B1AB1B68900BB9422 /* NewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItemCell.h; sourceTree = "<group>"; };
 		5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItemCell.m; sourceTree = "<group>"; };
+		5BF3B95E1AB1B89800BB9422 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		5BF3B95F1AB1B89800BB9422 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		5BF3B9611AB1B9AC00BB9422 /* FootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootView.h; sourceTree = "<group>"; };
+		5BF3B9621AB1B9AC00BB9422 /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
+		5BF3B9661AB1BA4F00BB9422 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		5BF3B9671AB1BA4F00BB9422 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		5BF3B9681AB1BA4F00BB9422 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		5BF3B9691AB1BA4F00BB9422 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		5BF3B96A1AB1BA4F00BB9422 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		5BF3B96B1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		5BF3B96C1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +100,7 @@
 		5BF3B9341AB1B5EE00BB9422 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				5BF3B9641AB1BA3300BB9422 /* TouchJSON */,
 				5BF3B9391AB1B5EE00BB9422 /* AppDelegate.h */,
 				5BF3B93A1AB1B5EE00BB9422 /* AppDelegate.m */,
 				5BF3B93C1AB1B5EE00BB9422 /* ViewController.h */,
@@ -94,6 +111,10 @@
 				5BF3B9351AB1B5EE00BB9422 /* Supporting Files */,
 				5BF3B95B1AB1B68900BB9422 /* NewsItemCell.h */,
 				5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */,
+				5BF3B95E1AB1B89800BB9422 /* News.h */,
+				5BF3B95F1AB1B89800BB9422 /* News.m */,
+				5BF3B9611AB1B9AC00BB9422 /* FootView.h */,
+				5BF3B9621AB1B9AC00BB9422 /* FootView.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -122,6 +143,28 @@
 				5BF3B9501AB1B5EF00BB9422 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5BF3B9641AB1BA3300BB9422 /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				5BF3B9651AB1BA4F00BB9422 /* Source */,
+			);
+			name = TouchJSON;
+			sourceTree = "<group>";
+		};
+		5BF3B9651AB1BA4F00BB9422 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				5BF3B9661AB1BA4F00BB9422 /* CJSONDeserializer.h */,
+				5BF3B9671AB1BA4F00BB9422 /* CJSONDeserializer.m */,
+				5BF3B9681AB1BA4F00BB9422 /* CJSONSerializer.h */,
+				5BF3B9691AB1BA4F00BB9422 /* CJSONSerializer.m */,
+				5BF3B96A1AB1BA4F00BB9422 /* JSONRepresentation.h */,
+				5BF3B96B1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.h */,
+				5BF3B96C1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,9 +267,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF3B96D1AB1BA4F00BB9422 /* CJSONDeserializer.m in Sources */,
+				5BF3B96F1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m in Sources */,
+				5BF3B9601AB1B89800BB9422 /* News.m in Sources */,
 				5BF3B93E1AB1B5EE00BB9422 /* ViewController.m in Sources */,
+				5BF3B96E1AB1BA4F00BB9422 /* CJSONSerializer.m in Sources */,
 				5BF3B95D1AB1B68900BB9422 /* NewsItemCell.m in Sources */,
 				5BF3B93B1AB1B5EE00BB9422 /* AppDelegate.m in Sources */,
+				5BF3B9631AB1B9AC00BB9422 /* FootView.m in Sources */,
 				5BF3B9381AB1B5EE00BB9422 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
