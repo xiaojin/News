@@ -14,6 +14,7 @@
 		5BF3B9431AB1B5EE00BB9422 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF3B9421AB1B5EE00BB9422 /* Images.xcassets */; };
 		5BF3B9461AB1B5EE00BB9422 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF3B9441AB1B5EE00BB9422 /* LaunchScreen.xib */; };
 		5BF3B9521AB1B5EF00BB9422 /* NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9511AB1B5EF00BB9422 /* NewsTests.m */; };
+		5BF3B95D1AB1B68900BB9422 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		5BF3B94B1AB1B5EF00BB9422 /* NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF3B9501AB1B5EF00BB9422 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BF3B9511AB1B5EF00BB9422 /* NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsTests.m; sourceTree = "<group>"; };
+		5BF3B95B1AB1B68900BB9422 /* NewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItemCell.h; sourceTree = "<group>"; };
+		5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItemCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				5BF3B9421AB1B5EE00BB9422 /* Images.xcassets */,
 				5BF3B9441AB1B5EE00BB9422 /* LaunchScreen.xib */,
 				5BF3B9351AB1B5EE00BB9422 /* Supporting Files */,
+				5BF3B95B1AB1B68900BB9422 /* NewsItemCell.h */,
+				5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF3B93E1AB1B5EE00BB9422 /* ViewController.m in Sources */,
+				5BF3B95D1AB1B68900BB9422 /* NewsItemCell.m in Sources */,
 				5BF3B93B1AB1B5EE00BB9422 /* AppDelegate.m in Sources */,
 				5BF3B9381AB1B5EE00BB9422 /* main.m in Sources */,
 			);
