@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface News : NSObject
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *desc;
+@property (nonatomic, copy) NSString *imageHref;
 
+- (instancetype)initWithDict:(NSDictionary *)dict;
 @end

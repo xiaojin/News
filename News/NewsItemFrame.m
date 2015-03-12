@@ -27,8 +27,42 @@
     return self;
 }
 
+- (News*)getNews{
+    return self.news;
+}
+
 - (void) setNews:(News *)news
 {
+    _news = news;
+    CGFloat padding = 10;
+    CGFloat paddingTop = 5;
+    CGSize frameSize = self.viewFrame.size;
+    //    _iconFrame = CGRectMake(padding, padding, iconW, iconH);
+    
+    CGSize titleSize = [self initSizeWithText:self.news.title withSize:CGSizeMake((frameSize.width - 2*padding), MAXFLOAT) withFont:NewsTitleFont];
+    CGFloat nameW = titleSize.width;
+    CGFloat nameH = titleSize.height;
+    CGFloat pointX = padding;
+    CGFloat pointY = paddingTop;
+    
+    _titleFrame = CGRectMake(pointX, pointY, nameW, nameH);
+    
+    CGSize textSize = [self initSizeWithText:self.news.desc withSize:CGSizeMake((frameSize.width - 3*padding-PicWith), MAXFLOAT) withFont:NewsTextFont];
+    CGFloat textW = textSize.width;
+    CGFloat textH = textSize.height;
+    CGFloat textPointX = padding;
+    CGFloat textPointY = CGRectGetMaxY(_titleFrame);
+    _textFrame = CGRectMake(textPointX, textPointY, textW, textH);
+    
+
+    CGFloat picPointX = CGRectGetMaxX(_textFrame);;
+    CGFloat picPointY = CGRectGetMaxY(_titleFrame);
+    _pictureFrame = CGRectMake(picPointX, picPointY, PicWith, PicHeight);
+    if (CGRectGetMaxY(_textFrame) > CGRectGetMaxY(_pictureFrame)) {
+        _cellHeight = CGRectGetMaxY(_textFrame) +20;
+    } else {
+        _cellHeight = CGRectGetMaxY(_pictureFrame) +20;
+    }
 
     
 }

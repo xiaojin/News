@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NewsItemFrame.h"
 @interface NewsItemCell : UITableViewCell
-
+@property (nonatomic, strong) NewsItemFrame *status;
++ (instancetype) NewsWithCell:(UITableView *)tableview;
 @end
