@@ -11,7 +11,6 @@
 #import "NewsItemCell.h"
 #import "NewsItemFrame.h"
 #import "FootView.h"
-#define newsQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)
 #define SHOWITEMS 2
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate,FootViewDelegate>
