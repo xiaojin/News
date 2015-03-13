@@ -77,26 +77,25 @@
     News *newsItem =  [_status getNews];
     _imagePic.image = [UIImage imageNamed:@"default.jpg"];
     if (![newsItem.imageHref isEqualToString:@""]) {
-        [self performSelectorInBackground:@selector(downloadImage:) withObject:newsItem.imageHref];
+        dispatch_queue_t q =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(q , ^{
+
+            [self performSelectorInBackground:@selector(showImages:) withObject:newsItem.imageHref];
+        });
     }
     
     [_lblTitle setText:[newsItem title]];
     [_lblText setText:[newsItem desc]];
 }
-
--(void)downloadImage:(NSString *)imageURL
+- (void)showImages:(NSString*)imageURL
 {
-    NSAutoreleasePool *pl = [[NSAutoreleasePool alloc] init];
-    
-    NSString *str=imageURL;
     NSError *error = nil;
-    NSData *imagedata =  [NSData dataWithContentsOfURL:[NSURL URLWithString:str] options:NSDataReadingMappedAlways error:&error];
+    NSData *imagedata =  [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL] options:NSDataReadingMappedAlways error:&error];
     if (error==nil) {
-     UIImage *img = [[UIImage alloc] initWithData:imagedata];
-      _imagePic.image = img;
+        UIImage *img = [[UIImage alloc] initWithData:imagedata];
+        _imagePic.image = img;
         [img release];
     }
-    [pl release];
 }
 
 - (void)awakeFromNib
