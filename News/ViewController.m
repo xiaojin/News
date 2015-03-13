@@ -15,7 +15,7 @@
 #define SHOWITEMS 2
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate,FootViewDelegate>
-@property(nonatomic, weak)IBOutlet UITableView *tableView;
+@property(nonatomic, retain)IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableData *receivedData;
 @property (nonatomic, strong) NSArray *newsFrameArray;
 @property (nonatomic, assign) NSInteger index;
@@ -27,11 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchJSONData];
-   // [self readJSONdata];
     _tableView.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     _tableView.delegate=self;
     _tableView.dataSource = self;
     [self initFootView];
+    self.newsFrameArray = [[NSArray alloc]init];
+    self.showFrameArray = [[NSArray alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -42,11 +43,14 @@
     FootView *footbutton = [[FootView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, footbtnHeight) withButtonFrame:CGRectMake(footcontentPaddingLeft,footcontentPaddingTop , (self.view.frame.size.width-2*footcontentPaddingLeft), (footbtnHeight-2*footcontentPaddingTop))];
     footbutton.delegate = self;
     _tableView.tableFooterView = footbutton;
+    [footbutton release];
 }
 
 - (void)initDataSource {
     self.index = 0+ SHOWITEMS;
-    _showFrameArray =[NSArray arrayWithArray:[_newsFrameArray subarrayWithRange:NSMakeRange(0, self.index)]];
+    NSArray *sliceArray =[[NSArray alloc] initWithArray:[self.newsFrameArray subarrayWithRange:NSMakeRange(0, self.index)]];
+    self.showFrameArray =sliceArray;
+    [sliceArray release];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -64,7 +68,8 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsItemCell * cell = [NewsItemCell NewsWithCell:tableView];
-    cell.status = self.newsFrameArray[indexPath.row];
+    NewsItemFrame *newItem = _showFrameArray[indexPath.row];
+    cell.status = newItem;
     return cell;
 }
 
@@ -72,19 +77,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsItemFrame *itemFrame =self.newsFrameArray[indexPath.row];
+    NewsItemFrame *itemFrame =_newsFrameArray[indexPath.row];
     return itemFrame.cellHeight;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
-//{
-//    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-//    
-//    CGRect statusBarWindowRect = [self.view.window convertRect:statusBarFrame fromWindow: nil];
-//    
-//    CGRect statusBarViewRect = [self.view convertRect:statusBarWindowRect fromView: nil];
-//    return statusBarViewRect.size.height;
-//}
 
 #pragma mark - Table View header delegate
 - (void)updateDate:(FootView *)footview
@@ -94,7 +89,9 @@
     } else {
         self.index += SHOWITEMS;
     }
-    _showFrameArray =[NSArray arrayWithArray:[_newsFrameArray subarrayWithRange:NSMakeRange(0, self.index)]];
+    NSArray *sliceArray = [[NSArray alloc] initWithArray: [_newsFrameArray subarrayWithRange:NSMakeRange(0, self.index)]];
+    self.showFrameArray = sliceArray;
+    [sliceArray release];
     [self.tableView reloadData];
 }
 
@@ -109,7 +106,7 @@
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/746330/facts.json"]];
         NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:urlRequest delegate:self];
     
-            _receivedData = [[NSMutableData alloc]init];
+        _receivedData = [[NSMutableData alloc]init];
         [connection start];
 }
 
@@ -130,19 +127,23 @@
     NSError *error = nil;
     NSString *receivedString = [[NSString alloc] initWithData:_receivedData encoding:NSISOLatin1StringEncoding];
     NSData *jsonData = [receivedString dataUsingEncoding:NSUTF8StringEncoding];
+    [receivedString release];
     NSDictionary *factsDict =[[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&error];
     NSString *articalTitle = [factsDict objectForKey:@"title"];
     NSArray *newsArray = [factsDict objectForKey:@"rows"];
-    NSMutableArray *framesArray =[NSMutableArray array];
+    NSMutableArray *framesArray =[[NSMutableArray alloc]init];
     for (NSDictionary *newsitem in newsArray) {
         if ([newsitem objectForKey:@"title"] !=[NSNull null]) {
             News *news = [[News alloc]initWithDict:newsitem];
             NewsItemFrame *itemFrame = [[NewsItemFrame alloc]initFrameWithNews:news withViewFrame:self.view.bounds];
+            [news release];
             [framesArray addObject:itemFrame ];
+            [itemFrame release];
         }
         
     }
-    _newsFrameArray = framesArray;
+    self.newsFrameArray = framesArray;
+    [framesArray release];
     [self initDataSource];
     [self.tableView reloadData];
     self.navigationItem.title = articalTitle;
@@ -158,7 +159,18 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+    [alert release];
     [(FootView*)_tableView.tableFooterView stopAnimation];
 }
 
+-(void)dealloc
+{
+    [_receivedData release];
+    _receivedData =nil;
+    [_newsFrameArray release];
+    _newsFrameArray = nil;
+    [_showFrameArray release];
+    _showFrameArray = nil;
+    [super dealloc];
+}
 @end

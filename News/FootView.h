@@ -16,7 +16,7 @@
 
 @interface FootView : UIView
 - (instancetype)initWithFrame:(CGRect)frame withButtonFrame:(CGRect)btnFrame;
-@property(nonatomic,weak) id<FootViewDelegate> delegate;
+@property(nonatomic,assign) id<FootViewDelegate> delegate;
 
 - (void)startAnimation;
 - (void)stopAnimation;

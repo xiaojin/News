@@ -9,8 +9,6 @@
 #import "FootView.h"
 @interface FootView ()
 @property (strong, nonatomic)  UIButton *btnTG;
-@property (strong, nonatomic)  UIActivityIndicatorView *activityTG;
-@property (strong, nonatomic)  UILabel *lblTGLoading;
 @property (strong, nonatomic)  UIView *tgControlView;
 - (IBAction)loadBtnClick:(id)sender;
 
@@ -25,44 +23,45 @@
     // Drawing code
 }
 */
-+ (instancetype) footerView
-{
-    return [[[NSBundle mainBundle] loadNibNamed:@"LoadButton" owner:nil options:nil] lastObject];
-}
 
 - (instancetype)initWithFrame:(CGRect)frame withButtonFrame:(CGRect)btnFrame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.btnTG = [[UIButton alloc]initWithFrame:btnFrame];
-        [self.btnTG setTitle:@"Add More" forState:UIControlStateNormal];
-        [self.btnTG setBackgroundColor:[UIColor orangeColor]];
-        [self.btnTG addTarget:self action:@selector(loadBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.btnTG];
-        self.tgControlView = [[UIView alloc]initWithFrame:btnFrame];
-        [self insertSubview:self.tgControlView belowSubview:self.btnTG];
+        UIButton *tgbtn= [[UIButton alloc]initWithFrame:btnFrame];
+        [tgbtn setTitle:@"Add More" forState:UIControlStateNormal];
+        [tgbtn setBackgroundColor:[UIColor orangeColor]];
+        [tgbtn addTarget:self action:@selector(loadBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:tgbtn];
+        self.btnTG = tgbtn;
+        [tgbtn release];
+        UIView *tgControlView = [[UIView alloc]initWithFrame:btnFrame];
      
         CGFloat lblWidth = btnFrame.size.width;
         CGFloat lblHeigth = btnFrame.size.height;
         CGFloat lblPointX = (frame.size.width -lblWidth)/2;
         CGFloat lblPointY = (frame.size.height -lblHeigth)/2;
-        self.lblTGLoading = [[UILabel alloc]initWithFrame:CGRectMake(lblPointX, lblPointY, lblWidth, lblHeigth)];
-        [self.lblTGLoading setTextAlignment:NSTextAlignmentCenter];
-        [self.lblTGLoading setText:@"Loading....."];
-        [self.lblTGLoading setFont:[UIFont systemFontOfSize:13.0f]];
-        [self.tgControlView addSubview:self.lblTGLoading];
+        UILabel *lblTGLoading = [[UILabel alloc]initWithFrame:CGRectMake(lblPointX, lblPointY, lblWidth, lblHeigth)];
+        [lblTGLoading setTextAlignment:NSTextAlignmentCenter];
+        [lblTGLoading setText:@"Loading....."];
+        [lblTGLoading setFont:[UIFont systemFontOfSize:13.0f]];
+        [tgControlView addSubview:lblTGLoading];
         
-        self.activityTG = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [self.activityTG startAnimating];
+        UIActivityIndicatorView *activityTG = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [activityTG startAnimating];
         
-        CGFloat actWidth = CGRectGetWidth(self.activityTG.frame);
-        CGFloat actHeigth = CGRectGetHeight(self.activityTG.frame);
+        CGFloat actWidth = CGRectGetWidth(activityTG.frame);
+        CGFloat actHeigth = CGRectGetHeight(activityTG.frame);
         CGFloat actPointX = 20.0f;
         CGFloat actPointY = (frame.size.height -actHeigth)/2;
         
-        self.activityTG.frame = CGRectMake(actPointX, actPointY, actWidth, actHeigth);
-        [self.tgControlView addSubview:self.activityTG];
-        
+        activityTG.frame = CGRectMake(actPointX, actPointY, actWidth, actHeigth);
+        [tgControlView addSubview:activityTG];
+        [activityTG release];
+        [lblTGLoading release];
+        [self insertSubview:tgControlView belowSubview:self.btnTG];
+        self.tgControlView = tgControlView;
+        [tgControlView release];
         [self startAnimation];
     }
     return self;
@@ -91,6 +90,15 @@
         self.tgControlView.hidden = YES;
     });
     
+}
+
+- (void)dealloc
+{
+    [_btnTG release];
+    _btnTG = nil;
+    [_tgControlView release];
+    _tgControlView = nil;
+    [super dealloc];
 }
 
 @end

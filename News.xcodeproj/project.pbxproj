@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5BDACD7B1AB1E095007A99EA /* facts.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BDACD7A1AB1E095007A99EA /* facts.json */; };
 		5BDACD7E1AB21E1A007A99EA /* NewsItemFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDACD7D1AB21E1A007A99EA /* NewsItemFrame.m */; };
 		5BDACD801AB23CEF007A99EA /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BDACD7F1AB23CEF007A99EA /* default.jpg */; };
 		5BF3B9381AB1B5EE00BB9422 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9371AB1B5EE00BB9422 /* main.m */; };
@@ -19,9 +18,9 @@
 		5BF3B95D1AB1B68900BB9422 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B95C1AB1B68900BB9422 /* NewsItemCell.m */; };
 		5BF3B9601AB1B89800BB9422 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B95F1AB1B89800BB9422 /* News.m */; };
 		5BF3B9631AB1B9AC00BB9422 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9621AB1B9AC00BB9422 /* FootView.m */; };
-		5BF3B96D1AB1BA4F00BB9422 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9671AB1BA4F00BB9422 /* CJSONDeserializer.m */; };
-		5BF3B96E1AB1BA4F00BB9422 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9691AB1BA4F00BB9422 /* CJSONSerializer.m */; };
-		5BF3B96F1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B96C1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m */; };
+		5BF3B96D1AB1BA4F00BB9422 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9671AB1BA4F00BB9422 /* CJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		5BF3B96E1AB1BA4F00BB9422 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B9691AB1BA4F00BB9422 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		5BF3B96F1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3B96C1AB1BA4F00BB9422 /* NSDictionary_JSONExtensions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5BDACD7A1AB1E095007A99EA /* facts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = facts.json; sourceTree = "<group>"; };
 		5BDACD7C1AB21E1A007A99EA /* NewsItemFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItemFrame.h; sourceTree = "<group>"; };
 		5BDACD7D1AB21E1A007A99EA /* NewsItemFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItemFrame.m; sourceTree = "<group>"; };
 		5BDACD7F1AB23CEF007A99EA /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				5BDACD7F1AB23CEF007A99EA /* default.jpg */,
-				5BDACD7A1AB1E095007A99EA /* facts.json */,
 				5BF3B9641AB1BA3300BB9422 /* TouchJSON */,
 				5BF3B9391AB1B5EE00BB9422 /* AppDelegate.h */,
 				5BF3B93A1AB1B5EE00BB9422 /* AppDelegate.m */,
@@ -256,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF3B9411AB1B5EE00BB9422 /* Main.storyboard in Resources */,
-				5BDACD7B1AB1E095007A99EA /* facts.json in Resources */,
 				5BF3B9431AB1B5EE00BB9422 /* Images.xcassets in Resources */,
 				5BDACD801AB23CEF007A99EA /* default.jpg in Resources */,
 			);
@@ -399,8 +395,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 渊 李 (Q346HU2J3D)";
 				INFOPLIST_FILE = News/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -410,8 +408,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 渊 李 (Q346HU2J3D)";
 				INFOPLIST_FILE = News/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -430,6 +430,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = NewsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/News.app/News";
@@ -445,6 +446,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = NewsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/News.app/News";

@@ -28,40 +28,44 @@
 }
 
 - (News*)getNews{
-    return self.news;
+    return _news;
 }
 
 - (void) setNews:(News *)news
 {
-    _news = news;
-    CGFloat padding = 10;
-    CGFloat paddingTop = 5;
-    CGSize frameSize = self.viewFrame.size;
-    //    _iconFrame = CGRectMake(padding, padding, iconW, iconH);
-    
-    CGSize titleSize = [self initSizeWithText:self.news.title withSize:CGSizeMake((frameSize.width - 2*padding), MAXFLOAT) withFont:NewsTitleFont];
-    CGFloat nameW = titleSize.width;
-    CGFloat nameH = titleSize.height;
-    CGFloat pointX = padding;
-    CGFloat pointY = paddingTop;
-    
-    _titleFrame = CGRectMake(pointX, pointY, nameW, nameH);
-    
-    CGSize textSize = [self initSizeWithText:self.news.desc withSize:CGSizeMake((frameSize.width - 3*padding-PicWith), MAXFLOAT) withFont:NewsTextFont];
-    CGFloat textW = textSize.width;
-    CGFloat textH = textSize.height;
-    CGFloat textPointX = padding;
-    CGFloat textPointY = CGRectGetMaxY(_titleFrame)+ paddingTop;
-    _textFrame = CGRectMake(textPointX, textPointY, textW, textH);
-    
+    if (_news!=news) {
+        [_news release];
+        _news = [news retain];
+        CGFloat padding = 10;
+        CGFloat paddingTop = 5;
+        CGSize frameSize = self.viewFrame.size;
+        //    _iconFrame = CGRectMake(padding, padding, iconW, iconH);
+        
+        CGSize titleSize = [self initSizeWithText:self.news.title withSize:CGSizeMake((frameSize.width - 2*padding), MAXFLOAT) withFont:NewsTitleFont];
+        CGFloat nameW = titleSize.width;
+        CGFloat nameH = titleSize.height;
+        CGFloat pointX = padding;
+        CGFloat pointY = paddingTop;
+        
+        _titleFrame = CGRectMake(pointX, pointY, nameW, nameH);
+        
+        CGSize textSize = [self initSizeWithText:self.news.desc withSize:CGSizeMake((frameSize.width - 3*padding-PicWith), MAXFLOAT) withFont:NewsTextFont];
+        CGFloat textW = textSize.width;
+        CGFloat textH = textSize.height;
+        CGFloat textPointX = padding;
+        CGFloat textPointY = CGRectGetMaxY(_titleFrame)+ paddingTop;
+        _textFrame = CGRectMake(textPointX, textPointY, textW, textH);
+        
+        
+        CGFloat picPointX = frameSize.width-padding-PicWith;
+        CGFloat picPointY = CGRectGetMaxY(_titleFrame);
+        _pictureFrame = CGRectMake(picPointX, picPointY, PicWith, PicHeight);
+        if (CGRectGetMaxY(_textFrame) > CGRectGetMaxY(_pictureFrame)) {
+            _cellHeight = CGRectGetMaxY(_textFrame) +20;
+        } else {
+            _cellHeight = CGRectGetMaxY(_pictureFrame) +20;
+        }
 
-    CGFloat picPointX = frameSize.width-padding-PicWith;
-    CGFloat picPointY = CGRectGetMaxY(_titleFrame);
-    _pictureFrame = CGRectMake(picPointX, picPointY, PicWith, PicHeight);
-    if (CGRectGetMaxY(_textFrame) > CGRectGetMaxY(_pictureFrame)) {
-        _cellHeight = CGRectGetMaxY(_textFrame) +20;
-    } else {
-        _cellHeight = CGRectGetMaxY(_pictureFrame) +20;
     }
 
     
@@ -73,4 +77,12 @@
     
     return [text boundingRectWithSize:Size options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 }
+
+- (void)dealloc
+{
+    [_news release];
+    _news = nil;
+    [super dealloc];
+}
+
 @end

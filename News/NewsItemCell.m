@@ -9,9 +9,9 @@
 #import "NewsItemCell.h"
 #import "News.h"
 @interface NewsItemCell()
-@property(nonatomic, weak)IBOutlet UILabel *lblTitle;
-@property(nonatomic, weak)IBOutlet UILabel *lblText;
-@property(nonatomic, weak)IBOutlet UIImageView *imagePic;
+@property(nonatomic, retain)IBOutlet UILabel *lblTitle;
+@property(nonatomic, retain)IBOutlet UILabel *lblText;
+@property(nonatomic, retain)IBOutlet UIImageView *imagePic;
 @end
 
 @implementation NewsItemCell
@@ -21,7 +21,7 @@
     static NSString *identity =@"news";
     NewsItemCell * cell = [tableview dequeueReusableCellWithIdentifier:identity];
     if (cell == nil) {
-        cell = [[NewsItemCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identity];
+        cell = [[[NewsItemCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identity] autorelease];
     }
     return cell;
 }
@@ -35,17 +35,20 @@
         [lblTitle setNumberOfLines:0];
         [self addSubview:lblTitle];
         self.lblTitle = lblTitle;
+        [lblTitle release];
         
         UILabel *lblText = [[UILabel alloc]init];
         [lblText setFont:NewsTextFont];
         [lblText setNumberOfLines:0];
         [self addSubview:lblText];
-        
         self.lblText = lblText;
+        [lblText release];
+
         
         UIImageView *imagePic = [[UIImageView alloc] init];
         [self addSubview:imagePic];
         self.imagePic = imagePic;
+        [imagePic release];
         
     }
     return  self;
@@ -53,51 +56,66 @@
 
 - (void)setStatus:(NewsItemFrame *)status
 {
-    _status = status;
-    [self updateFrame];
-    [self updateData];
+    if (_status !=status) {
+        [_status release];
+        _status = [status retain];
+        [self updateFrame];
+        [self updateData];
+    }
+
 }
 
 - (void)updateFrame
 {
-    self.imagePic.frame = self.status.pictureFrame;
-    self.lblTitle.frame = self.status.titleFrame;
-    self.lblText.frame = self.status.textFrame;
+    _imagePic.frame = _status.pictureFrame;
+    _lblTitle.frame = _status.titleFrame;
+    _lblText.frame = _status.textFrame;
 }
 
 - (void)updateData
 {
-    News *newsItem =  [self.status getNews];
-    self.imagePic.image = [UIImage imageNamed:@"default.jpg"];
+    News *newsItem =  [_status getNews];
+    _imagePic.image = [UIImage imageNamed:@"default.jpg"];
     if (![newsItem.imageHref isEqualToString:@""]) {
         [self performSelectorInBackground:@selector(downloadImage:) withObject:newsItem.imageHref];
     }
     
-    [self.lblTitle setText:[newsItem title]];
-    [self.lblText setText:[newsItem desc]];
+    [_lblTitle setText:[newsItem title]];
+    [_lblText setText:[newsItem desc]];
 }
 
--(void)downloadImage:(NSString *)imageURL{
-    //NSAutoreleasePool *pl = [[NSAutoreleasePool alloc] init];
+-(void)downloadImage:(NSString *)imageURL
+{
+    NSAutoreleasePool *pl = [[NSAutoreleasePool alloc] init];
     
     NSString *str=imageURL;
     NSError *error = nil;
     NSData *imagedata =  [NSData dataWithContentsOfURL:[NSURL URLWithString:str] options:NSDataReadingMappedAlways error:&error];
     if (error==nil) {
      UIImage *img = [[UIImage alloc] initWithData:imagedata];
-      self.imagePic.image = img;
+      _imagePic.image = img;
+        [img release];
     }
-   // [pl release];
+    [pl release];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)dealloc
+{
+    [_status release];
+    _status = nil;
+    [super dealloc];
 }
 
 @end
