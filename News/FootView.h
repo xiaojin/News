@@ -18,4 +18,6 @@
 - (instancetype)initWithFrame:(CGRect)frame withButtonFrame:(CGRect)btnFrame;
 @property(nonatomic,weak) id<FootViewDelegate> delegate;
 
+- (void)startAnimation;
+- (void)stopAnimation;
 @end

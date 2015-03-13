@@ -63,8 +63,20 @@
         self.activityTG.frame = CGRectMake(actPointX, actPointY, actWidth, actHeigth);
         [self.tgControlView addSubview:self.activityTG];
         
+        [self startAnimation];
     }
     return self;
+}
+
+- (void)startAnimation
+{
+    self.btnTG.hidden = YES;
+    self.tgControlView.hidden= NO;
+}
+- (void)stopAnimation
+{
+    self.btnTG.hidden = NO;
+    self.tgControlView.hidden= NO;
 }
 
 - (IBAction)loadBtnClick:(id)sender {
