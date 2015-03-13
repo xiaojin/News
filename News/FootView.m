@@ -44,7 +44,7 @@
      
         CGFloat lblWidth = btnFrame.size.width;
         CGFloat lblHeigth = btnFrame.size.height;
-        CGFloat lblPointX = (frame.size.width -lblWidth/2)/2;
+        CGFloat lblPointX = (frame.size.width -lblWidth)/2;
         CGFloat lblPointY = (frame.size.height -lblHeigth)/2;
         self.lblTGLoading = [[UILabel alloc]initWithFrame:CGRectMake(lblPointX, lblPointY, lblWidth, lblHeigth)];
         [self.lblTGLoading setTextAlignment:NSTextAlignmentCenter];
@@ -53,7 +53,14 @@
         [self.tgControlView addSubview:self.lblTGLoading];
         
         self.activityTG = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [self.activityTG setFrame:CGRectMake((lblPointX-20.0f), ((frame.size.height-CGRectGetHeight(self.activityTG.frame))/2), CGRectGetWidth(self.activityTG.frame), CGRectGetHeight(self.activityTG.frame))];
+        [self.activityTG startAnimating];
+        
+        CGFloat actWidth = CGRectGetWidth(self.activityTG.frame);
+        CGFloat actHeigth = CGRectGetHeight(self.activityTG.frame);
+        CGFloat actPointX = 20.0f;
+        CGFloat actPointY = (frame.size.height -actHeigth)/2;
+        
+        self.activityTG.frame = CGRectMake(actPointX, actPointY, actWidth, actHeigth);
         [self.tgControlView addSubview:self.activityTG];
         
     }
