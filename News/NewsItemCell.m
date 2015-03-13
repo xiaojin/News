@@ -68,18 +68,27 @@
 - (void)updateData
 {
     News *newsItem =  [self.status getNews];
-    NSString *picImage = @"";
-//    if ([newsItem.imageHref isEqualToString:@""]) {
-//        picImage = @"";
-//    } else {
-//        picImage = [newsItem imageHref];
-//    }
     self.imagePic.image = [UIImage imageNamed:@"default.jpg"];
+    if (![newsItem.imageHref isEqualToString:@""]) {
+        [self performSelectorInBackground:@selector(downloadImage:) withObject:newsItem.imageHref];
+    }
+    
     [self.lblTitle setText:[newsItem title]];
     [self.lblText setText:[newsItem desc]];
 }
 
-
+-(void)downloadImage:(NSString *)imageURL{
+    //NSAutoreleasePool *pl = [[NSAutoreleasePool alloc] init];
+    
+    NSString *str=imageURL;
+    NSError *error = nil;
+    NSData *imagedata =  [NSData dataWithContentsOfURL:[NSURL URLWithString:str] options:NSDataReadingMappedAlways error:&error];
+    if (error==nil) {
+     UIImage *img = [[UIImage alloc] initWithData:imagedata];
+      self.imagePic.image = img;
+    }
+   // [pl release];
+}
 
 - (void)awakeFromNib {
     // Initialization code
