@@ -31,15 +31,22 @@
     _tableView.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     _tableView.delegate=self;
     _tableView.dataSource = self;
+    [self initFootView];
+    [self initDataSource];
+    // Do any additional setup after loading the view, typically from a nib.
+}
+-(void)initFootView {
     CGFloat footbtnHeight = 35.0f;
     CGFloat footcontentPaddingLeft = 8.0f;
     CGFloat footcontentPaddingTop = 2.0f;
     FootView *footbutton = [[FootView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, footbtnHeight) withButtonFrame:CGRectMake(footcontentPaddingLeft,footcontentPaddingTop , (self.view.frame.size.width-2*footcontentPaddingLeft), (footbtnHeight-2*footcontentPaddingTop))];
     footbutton.delegate = self;
     _tableView.tableFooterView = footbutton;
+}
+
+- (void)initDataSource {
     self.index = 0+ SHOWITEMS;
     _showFrameArray =[NSArray arrayWithArray:[_newsFrameArray subarrayWithRange:NSMakeRange(0, self.index)]];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
