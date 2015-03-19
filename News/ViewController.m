@@ -83,8 +83,8 @@
 #pragma mark - Table View header delegate
 - (void)updateDate:(FootView *)footview
 {
-    if ((self.index + SHOWITEMS) >=([_newsFrameArray count]-1)) {
-        self.index =([_newsFrameArray count]-1);
+    if ((self.index + SHOWITEMS) >=([_newsFrameArray count])) {
+        self.index =([_newsFrameArray count]);
     } else {
         self.index += SHOWITEMS;
     }
