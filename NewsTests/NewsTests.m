@@ -37,4 +37,8 @@
 //    }];
 }
 
+- (void)testDownloadImageFunction {
+  XCTAssert(YES, @"Not Pass");
+}
+
 @end
