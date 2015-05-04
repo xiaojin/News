@@ -2,4 +2,4 @@ language: objective-c
 before_install:
    - brew update
    - brew outdated xctool || brew upgrade xctool
-script: xctool -project news.xcodeproj -scheme news test
+script: xctool -project news.xcodeproj -scheme News test
